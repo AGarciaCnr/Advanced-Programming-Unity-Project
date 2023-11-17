@@ -18,7 +18,7 @@ public class Player : Character
         Debug.Log(Health);
     }
 
-    public override void Die()
+    override public void Die()
     {
         base.Die();
         Debug.Log("Game Over");

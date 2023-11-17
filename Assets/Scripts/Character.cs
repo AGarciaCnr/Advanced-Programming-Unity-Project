@@ -11,31 +11,31 @@ public interface IHealth
 
 public abstract class Character : MonoBehaviour, IHealth
 {
-    private int maxHealth;
-    private int health;
+    private int _maxHealth;
+    private int _health;
 
     public int MaxHealth
     {
-        get { return maxHealth; }
-        set { maxHealth = value; }
+        get { return _maxHealth; }
+        set { _maxHealth = value; }
     }
 
     public int Health
     {
-        get { return health; }
-        set { health = value; }
+        get { return _health; }
+        set { _health = value; }
     }
 
     public Character(int maxHealth = 100)
     {
-        this.maxHealth = maxHealth;
-        this.health = maxHealth;
+        this._maxHealth = maxHealth;
+        this._health = maxHealth;
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
-        health -= damage;
-        if (health <= 0)
+        _health -= damage;
+        if (_health <= 0)
         {
             Die();
         }
@@ -43,7 +43,7 @@ public abstract class Character : MonoBehaviour, IHealth
     
     public void Heal(int healAmount)
     {
-        health += healAmount;
+        _health += healAmount;
     }
 
     public virtual void Die()
