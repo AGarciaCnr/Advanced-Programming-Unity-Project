@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-    public Enemy() : base(50)
+    public Enemy(int maxHealth) : base(maxHealth)
     {
         
     }
@@ -18,6 +18,6 @@ public class Enemy : Character
     override public void Die()
     {
         base.Die();
-        Destroy(gameObject);
+        PoolManager.Despawn(gameObject);
     }
 }
