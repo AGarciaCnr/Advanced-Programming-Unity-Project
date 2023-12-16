@@ -80,4 +80,12 @@ public class PoolManager : Singleton<PoolManager>
         instance.DespawnInternal(go);
     }
 
+    public static int GetInstanceCount(GameObject prefab)
+    {
+        if (instance._pool.ContainsKey(prefab.name))
+        {
+            return instance._pool[prefab.name].Count;
+        }
+        return 0;
+    }
 }

@@ -6,10 +6,9 @@ using UnityEngine;
 public class Warrior : Enemy
 {
     const int maxHealth = 50;
-    public Warrior() : base(maxHealth)
+    const int points = 10;
+    public Warrior() : base(maxHealth, points)
     {
-
+        
     }
-
-
 }

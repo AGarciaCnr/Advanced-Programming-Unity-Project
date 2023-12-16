@@ -1,12 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Enemy : Character
 {
-    public Enemy(int maxHealth) : base(maxHealth)
+    [System.Serializable]
+    public class EnemyDeathEvent : UnityEvent<Enemy> { }
+
+    public EnemyDeathEvent onEnemyDeath = new EnemyDeathEvent();
+
+    int _points = 0;
+    public Enemy(int maxHealth, int points) : base(maxHealth)
     {
-        
+        this._points = points;
+    }
+
+    public int Points
+    {
+        get { return _points; }
+        set { _points = value; }
     }
 
     override public void TakeDamage(int damage)
@@ -19,5 +32,6 @@ public class Enemy : Character
     {
         base.Die();
         PoolManager.Despawn(gameObject);
+        onEnemyDeath.Invoke(this);
     }
 }

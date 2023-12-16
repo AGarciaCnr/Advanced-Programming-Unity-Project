@@ -4,14 +4,15 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField]
     private GameObject _enemyPrefab;
+    const float spawnRadius = 5f;
 
-    public int maxEnemyLife = 50;
-    public int numberOfEnemiesInWave;
-    public float spawnRadius;
-
-    public void SpawnWave()
+    public void SpawnWave(int numberOfEnemiesInWave)
     {
-        PoolManager.Load(_enemyPrefab, numberOfEnemiesInWave);
+        if (PoolManager.GetInstanceCount(_enemyPrefab) < 20)
+        {
+            PoolManager.Load(_enemyPrefab, numberOfEnemiesInWave);
+        }
+        
         for (int i = 0; i < numberOfEnemiesInWave; i++)
         {
             Vector2 randomCirclePoint = Random.insideUnitCircle.normalized * spawnRadius;
@@ -22,7 +23,8 @@ public class EnemySpawner : MonoBehaviour
             GameObject enemyGO = PoolManager.Spawn(_enemyPrefab, spawnPosition, spawnRotation);
 
             // Accedemos al componente Enemy y usamos el constructor para inicializarlo.
-            Enemy enemy = enemyGO.AddComponent<Enemy>();
+            Enemy enemy = enemyGO.AddComponent<Warrior>();
+            enemy.onEnemyDeath.AddListener(GameManager.instance.OnEnemyDeath);
         }
     }
 }
