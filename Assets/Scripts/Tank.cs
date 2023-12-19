@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tank : MonoBehaviour
+public class Tank : Enemy
 {
-    // Start is called before the first frame update
-    void Start()
+    const int maxHealth = 50;
+    const int points = 40;
+    public Tank() : base(maxHealth, points)
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

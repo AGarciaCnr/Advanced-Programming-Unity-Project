@@ -15,7 +15,6 @@ public class Player : Character
         {
             TakeDamage(10);
         }
-        Debug.Log(Health);
     }
 
     override public void Die()

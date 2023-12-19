@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ninja : MonoBehaviour
+public class Ninja : Enemy
 {
-    // Start is called before the first frame update
-    void Start()
+    const int maxHealth = 20;
+    const int points = 20;
+    public Ninja() : base(maxHealth, points)
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

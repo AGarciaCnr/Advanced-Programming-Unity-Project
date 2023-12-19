@@ -34,4 +34,11 @@ public class Enemy : Character
         PoolManager.Despawn(gameObject);
         onEnemyDeath.Invoke(this);
     }
+
+    public GameObject Spawn(Vector3 position, Quaternion rotation)
+    {
+        GameObject enemy = PoolManager.Spawn(this.gameObject, position, rotation);
+        enemy.GetComponent<Enemy>().onEnemyDeath.AddListener(GameManager.instance.OnEnemyDeath);
+        return enemy;
+    }
 }
